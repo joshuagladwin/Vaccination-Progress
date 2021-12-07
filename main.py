@@ -8,6 +8,8 @@ from push_files_to_web import push_files_to_web
 
 
 def main():
+    """Updates website with latest data from database and sends two tweets about the update."""
+
     print('Updating Database Table...')
     update_table()
     print('Database Update Complete!')

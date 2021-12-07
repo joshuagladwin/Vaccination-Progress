@@ -1,9 +1,9 @@
-
 from datetime import datetime
 from get_data import get_data
 
 
 def progress_bar(df):
+    """Creates JSON with the latest vaccination data for the website to display."""
 
     latest_data = df.iloc[-1].copy()
     date = df.index[-1]

@@ -1,13 +1,11 @@
-#!/usr/bin/python
-
 import pandas as pd
 import psycopg2
-import numpy as np
 
 from connect_db import connect_db
 
 
 def get_data():
+    """Returns data from vaccination_data database."""
 
     table = 'vaccination_data'
 
@@ -15,7 +13,7 @@ def get_data():
     # SQL query to execute
     query = """SELECT column_name
             FROM information_schema.columns 
-            WHERE table_name = 'vaccination_data';""" # TODO: Parameterize Query
+            WHERE table_name = 'vaccination_data';"""  # TODO: Parameterize Query
     cursor = conn.cursor()
     try:
         cursor.execute(query, table)
@@ -47,8 +45,6 @@ def get_data():
     df = pd.DataFrame(data, columns=columns)
     df.set_index('date', inplace=True)
     df.sort_index(inplace=True)
-
-
 
     return df
 

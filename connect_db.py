@@ -4,7 +4,8 @@ import psycopg2
 
 
 def connect_db():
-    """ Connect to the PostgreSQL database server """
+    """Connects to the PostgreSQL database server and returns the connection."""
+
     conn = None
     try:
         # connect to the PostgreSQL server

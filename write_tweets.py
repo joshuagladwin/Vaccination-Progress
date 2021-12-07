@@ -3,6 +3,7 @@ from datetime import timedelta
 
 
 def write_tweets(df):
+    """Returns the processed, formatted text for the tweets about the graphs for the update."""
 
     latest_data = df.iloc[-1]
     date = latest_data.name
@@ -27,7 +28,7 @@ def write_tweets(df):
     difference['day'] = last_week.strftime("%A")
 
     tweets = [
-    f"""VACCINATION PROGRESS BAR UPDATE ({date.strftime("%d.%m.%Y")}):
+        f"""VACCINATION PROGRESS BAR UPDATE ({date.strftime("%d.%m.%Y")}):
 
 Partial Vaccinations: {int(latest_data['yesterday_1st_doses']):,}
 Total Partial: {int(latest_data['total_1st_vaccinated']):,}
@@ -41,7 +42,7 @@ Plus {int(latest_data['yesterday_booster_doses']):,} Booster Vaccinations
 
 vaccinationprogress.joshuagladwin.de""",
 
-    f"""COMPARED TO LAST {difference.day.upper()} ({difference.date}):
+        f"""COMPARED TO LAST {difference.day.upper()} ({difference.date}):
 
 Partial Vaccinations are {difference.difference_1st_doses} doses.
 Full Vaccinations are {difference.difference_2nd_doses} doses.
@@ -57,7 +58,7 @@ vaccinationprogress.joshuagladwin.de
 
     return tweets
 
-if __name__ == '__main__':
 
+if __name__ == '__main__':
     df = get_data()
     write_tweets(df)

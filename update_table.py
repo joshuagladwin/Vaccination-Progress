@@ -1,27 +1,20 @@
 #!/usr/bin/python
 
 import psycopg2
-import psycopg2.extras as extras
+
 from connect_db import connect_db
 from latest_data import latest_data
-import pandas as pd
-import numpy as np
 
 
 def update_table():
-    """
-    Using psycopg2.extras.execute_values() to insert the dataframe
-    """
+    """Takes the latest data and upserts to PostgreSQL database."""
 
     df = latest_data()
 
     conn = connect_db()
 
-    # Create a list of tuples from the dataframe values
     tuples = [tuple(x) for x in df.to_numpy()]
-    # Comma-separated dataframe columns
-    cols = ','.join(list(df.columns))
-    # SQL quert to execute
+
     query = """
             INSERT INTO vaccination_data (date, yesterday_1st_doses, yesterday_2nd_doses, yesterday_booster_doses, 
             yesterday_total_doses, total_1st_vaccinated, total_2nd_vaccinated, total_booster_doses, pc_1st_vaccinated, 
@@ -37,7 +30,7 @@ def update_table():
             EXCLUDED.total_booster_doses, EXCLUDED.pc_1st_vaccinated, EXCLUDED.pc_2nd_vaccinated, 
             EXCLUDED.pc_booster_vaccinated, EXCLUDED.seven_d_avg_partial, EXCLUDED.seven_d_avg_full, 
             EXCLUDED.seven_d_avg_booster, EXCLUDED.seven_d_avg_total)
-            """
+            """ # TODO: Parameterize Query
     
     cursor = conn.cursor()
     try:

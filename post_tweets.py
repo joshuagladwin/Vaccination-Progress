@@ -11,6 +11,7 @@ screen_name = credentials['Screen Name']
 
 
 def post_tweets(tweets):
+    """Posts two Tweets that describe the attached screenshots of the Vaccination Graphs."""
 
     auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_token, access_token_secret)
@@ -18,8 +19,8 @@ def post_tweets(tweets):
     api = tweepy.API(auth)
 
     # Retrieve screenshots
-    first_tweet_image = "Twitter Images/Progress Bar.png"
-    second_tweet_image = "Twitter Images/Line Graph.png"
+    first_tweet_image = "Images/Progress Bar.png"
+    second_tweet_image = "Images/Line Graph.png"
 
     # Post 1st tweet
     api.update_status_with_media(status=tweets[0], filename=first_tweet_image)

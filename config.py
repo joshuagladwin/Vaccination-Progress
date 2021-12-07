@@ -2,6 +2,8 @@ from configparser import ConfigParser
 
 
 def config(filename="database.ini", section='postgresql'):
+    """Parses and returns the config for database connection (connect_db())"""
+
     # create a parser
     parser = ConfigParser()
     # read config file

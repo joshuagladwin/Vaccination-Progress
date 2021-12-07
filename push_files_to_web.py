@@ -8,6 +8,9 @@ password = credentials['password']
 
 
 def push_files_to_web():
+    """Pushs the files for the Progress Bar (vaccinationdata.json)
+    and the Line Graph (graph.html) to the website."""
+
     ftp = FTP(host, user, password)
     ftp.cwd('public_html')
     ftp.retrlines('LIST')
