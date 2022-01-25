@@ -28,17 +28,16 @@ def write_tweets(df):
     difference['day'] = last_week.strftime("%A")
 
     tweets = [
-        f"""VACCINATION PROGRESS BAR UPDATE ({date.strftime("%d.%m.%Y")}):
+        f"""GERMAN VACCINATION PROGRESS BAR UPDATE ({date.strftime("%d.%m.%Y")}):
 
-Partial Vaccinations: {int(latest_data['yesterday_1st_doses']):,}
-Total Partial: {int(latest_data['total_1st_vaccinated']):,}
-Minimum %Vaccinated: {latest_data['pc_1st_vaccinated']}%
+Partial Vaccinations: +{int(latest_data['yesterday_1st_doses']):,}
+Total: {int(latest_data['total_1st_vaccinated']):,} ({latest_data['pc_1st_vaccinated']}%)
 
-Full Vaccinations: {int(latest_data['yesterday_2nd_doses']):,}
-Total Full: {int(latest_data['total_2nd_vaccinated']):,}
-Minimum %Vaccinated: {latest_data['pc_2nd_vaccinated']}%
+Full Vaccinations: +{int(latest_data['yesterday_2nd_doses']):,}
+Total: {int(latest_data['total_2nd_vaccinated']):,} ({latest_data['pc_2nd_vaccinated']}%)
 
-Plus {int(latest_data['yesterday_booster_doses']):,} Booster Vaccinations
+Booster Vaccinations: +{int(latest_data['yesterday_booster_doses']):,}
+Total: {int(latest_data['total_booster_doses']):,} ({latest_data['pc_booster_vaccinated']}%)
 
 vaccinationprogress.joshuagladwin.de""",
 
